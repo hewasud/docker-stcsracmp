@@ -1,0 +1,15 @@
+fix fedora update issue:
+dnf --disablerepo \* --enablerepo updates update --refresh
+
+setup chrome firefox was too unstable...
+
+
+add http proxy to dnf:
+echo "proxy=http://stcweb.statcan.ca:80" >> /etc/dnf/dnf.conf
+echo "proxy_username=$username" >> /etc/dnf/dnf.conf
+echo "proxy_password=$proxypassword" >> /etc/dnf/dnf.conf
+
+setup maven shell environment:
+export M2_HOME=/opt/maven/latest
+export MVN_OPTS="-Xms1024m -Xmx4g -XX:PermSize=128m -XX:MaxPermSize=512m"
+export PATH=$PATH:$M2_HOME/bin

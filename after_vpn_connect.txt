@@ -1,0 +1,51 @@
+if it doesn't exist setup .m2 directory in persistant folder
+	mkdir /persist/.m2
+	ln -sf /persist/.m2 /root/.m2
+	cd ~/.m2
+	# copy downloaded settings.xml to .m2
+	curl 'https://icos-doc.statcan.ca/download/attachments/7310186/settings.xml?version=3&modificationDate=1416958208580&api=v2' -o "settings.xml"
+	sed -i 's/nexus/nexus.statcan.ca/g' settings.xml 
+	sed -i 's/central/central.statcan.ca/g' settings.xml
+(grep -v '</settings>' settings.xml; cat) > settings.with_proxy <<EOF
+<proxies>
+<proxy>
+  <id>stcweb.statcan.ca</id>
+  <active>true</active>
+  <protocol>http</protocol>
+  <host>stcweb.statcan.ca</host>
+  <port>80</port>
+  <username>$username</username>
+  <password>$proxypassword</password>
+</proxy>
+</proxies>
+</settings>
+EOF
+	mv settings.xml settings.without_proxy
+	ln -sf settings.with_proxy settings.xml
+
+
+if git is not setup then setup git
+	touch /persist/.gitconfig
+	ln -sf /persist/.gitconfig /root/.gitconfig
+
+	mkdir /persist/git-certs
+	ln -sf /persist/git-certs /root/git-certs
+	cd /root/git-certs/
+	curl "https://icos-doc.statcan.ca/download/attachments/7310186/stash-cert.crt?version=1&modificationDate=1418409298040&api=v2" -o "stash-cert.crt"
+
+	git config --global user.name "Hewa, Sudarsha - CoSD/DSCo"
+	git config --global user.email "sudarsha.hewa@canada.ca"
+	git config --global push.default simple
+	git config --global http.sslCAInfo /root/git-certs/stash-cert.crt
+	git config --global http.sslVerify "true"
+	git config --global http.proxy  http://${username}:${proxypassword}@stcweb.statcan.ca:80
+
+
+now setup and fetch cmp-codebase if it doesnt exist
+	mkdir /persist/git
+	ln -sf /persist/git /root/git
+	cd /root/git
+	git clone https://${username}@git.statcan.ca/scm/cmp/cmp-codebase.git
+
+
+
