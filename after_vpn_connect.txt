@@ -36,7 +36,7 @@ if git is not setup then setup git
 	git config --global user.name "Hewa, Sudarsha - CoSD/DSCo"
 	git config --global user.email "sudarsha.hewa@canada.ca"
 	git config --global push.default simple
-	git config --global http.sslCAInfo /root/git-certs/stash-cert.crt
+	git config --global http."https://git.statcan.ca".sslCAInfo /root/git-certs/stash-cert.crt
 	git config --global http.sslVerify "true"
 	git config --global http.proxy  http://${username}:${proxypassword}@stcweb.statcan.ca:80
 
