@@ -11,7 +11,7 @@ RUN dnf install -y openconnect vpnc-script git \
 		dejavu-serif-fonts eosrei-emojione-fonts fontawesome-fonts \
 		fontawesome-fonts-web gdouros-symbola-fonts gnu-free-fonts-common \
 		gnu-free-mono-fonts gnu-free-sans-fonts gnu-free-serif-fonts \
-		monofett-fonts msttcore-fonts overpass-mono-fonts \
+		monofett-fonts overpass-mono-fonts \
 		oxygen-fonts-common oxygen-mono-fonts pcaro-hermit-fonts \
 	&& curl -LO --insecure --junk-session-cookies --location \
 		--remote-name --silent \
