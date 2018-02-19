@@ -1,4 +1,12 @@
 # docker-stcsracmp
-Build Dockerfile for creating a docker image to containerize java devstack to be used with connectivity to work vpn.
+Build image:
 
-....Still an early work in progress and may be unstable at times ...
+```
+docker build -t stcsracmp .
+```
+
+Run container:
+```
+# Run the run.sh script or manually as follows:
+
+```
