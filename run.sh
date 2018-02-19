@@ -10,6 +10,12 @@ docker run \
 	-e LANG \
 	-e username=username \
 	-e proxypassword=password \
-	-it \
+	-itd \
 	stcsracmp \
-	/usr/bin/bash
+	/bin/bash
+
+# Setup host display access for the container
+export containerId=$(docker ps -l -q)
+xhost +local:$(docker inspect --format='{{ .Config.Hostname }}' $containerId)
+
+docker container attach stcsracmp
