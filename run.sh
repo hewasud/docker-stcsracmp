@@ -9,7 +9,6 @@ docker run \
 	-e DISPLAY \
 	-e LANG \
 	-e username=username \
-	-e proxypassword=password \
 	-itd \
 	stcsracmp \
 	/bin/bash
