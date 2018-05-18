@@ -3,6 +3,7 @@ docker run \
 	--name stcsracmp \
 	--device /dev/dri \
 	--device /dev/snd \
+	--dns 9.9.9.9 \
 	-v /apps/stcsracmp:/persist \
 	-v /tmp/.X11-unix:/tmp/.X11-unix \
 	-v /etc/localtime:/etc/localtime:ro \
